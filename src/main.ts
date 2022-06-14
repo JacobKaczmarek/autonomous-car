@@ -1,18 +1,25 @@
 import { Car } from "./car";
-import './style.css'
+import { Road } from "./road";
 
-const canvas = document.getElementById<HTMLDivElement>('canvas');
+const canvas = document.getElementById('canvas') as HTMLCanvasElement;
 canvas.width = 400;
 
 const ctx = canvas.getContext('2d');
 
-const car = new Car(200, 500, 40, 100)
+const road = new Road(canvas.width / 2, canvas.width * 0.9);
+const car = new Car(road.getLaneCenter(1), 500, 40, 100)
 
 const loop = () => {
   canvas.height = window.innerHeight;
-  car.update()
-  car.draw(ctx)
+  car.update(road.borders);
 
+  ctx!.save();
+  ctx!.translate(0, -car.y + canvas.height * 0.7);
+
+  road.draw(ctx!);
+  car!.draw(ctx!);
+
+  ctx!.restore();
   requestAnimationFrame(loop)
 }
 

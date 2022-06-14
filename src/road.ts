@@ -1,4 +1,5 @@
-import { lerp, Line, Point2d } from "./utils";
+import { lerp, Line } from "./utils";
+import { Vector2 } from "./vector2";
 
 export class Road {
     x: number;
@@ -24,12 +25,12 @@ export class Road {
 
         this.borders = [
             {
-                start: { x: this.left, y: this.top } as Point2d,
-                end: { x: this.left, y: this.bottom } as Point2d
+                start: { x: this.left, y: this.top } as Vector2,
+                end: { x: this.left, y: this.bottom } as Vector2
             } as Line,
             {
-                start: { x: this.right, y: this.top } as Point2d,
-                end: { x: this.right, y: this.bottom } as Point2d
+                start: { x: this.right, y: this.top } as Vector2,
+                end: { x: this.right, y: this.bottom } as Vector2
             } as Line
         ]
     }
